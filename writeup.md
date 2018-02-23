@@ -16,10 +16,10 @@ In the second part of the the pipline We apply the prespective transform to imag
 
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
-| 150, 720      | 150, 720        | 
-| 1150, 720      | 1150, 720      |
-| 570, 460     | 150, 0      |
-| 720, 460      | 1150, 0 |
+| 220, 720      | 320, 720        | 
+| 1150, 720      | 920, 720      |
+| 570, 470     | 320, 0      |
+| 720, 470      | 920, 0 |
 
 ![](./images/bird_eye.png)
 
@@ -76,7 +76,13 @@ We put all parts together
 <br/>
 ### Video pipline
 ---
-The video pipline is simply a reading the video frame by frame and input them to the image pipline and draw the result on the output video.
+The video pipline is simply a reading the video frame by frame and input them to the image pipline and draw the result on the output video. Some problems that might happend in the pipline are listed as below:
+
+1. More lines! You see when some other vehicles showed up in front of the camera we find more lines and so the hot point changes after the lane finding and it's wrong. 
+
+2. Tree's shadows. In a part of video there exists a tree. So the shadow of the tree showed up on the street. We mark them as the lines and in other ocassion, Forrest roads for example the hot points may change because of these lines and We make wrong decision finding the lanes.
+
+3. Light reflection. For example if water on the road or snowy roads the sun reflection disable our color s channel filter. So our hot points decreases and We rely on the sobel transform much more. This aims to unreliable decision making during the lane finding.
 
 <br/>
 ### Future Works
